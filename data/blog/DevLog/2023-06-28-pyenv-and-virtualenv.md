@@ -6,13 +6,13 @@ draft: false
 summary: Installing and using a Python version manager coupled with a virtual environment manager.
 ---
 
-Python is a very popular language with multiple use cases ranging from web development with tools such as Flash and Django to heavier computational work in the area of machine learning and AI.
+Python is a very popular language with multiple use cases ranging from web development, with tools such as Flask and Django, to heavier computational work in the area of machine learning and AI.
 
-When using a language such as Python, you will find yourself running in to dependency issues when working on various projects. This could be that the current code base only works with Python2 and not Python3, or it could be a case that a package was changed or phased out such as the changes made when Python3.9 updated to Python3.10. These issues are annoying to fix and are very time consuming when trying to trouble shoot.
+When using a language such as Python, you will find yourself running in to dependency issues when working on various projects. This could be that the current code base only works with Python2 and not Python3, or it could be a case that a package was changed or phased out such as the changes made when Python3.9 updated to Python3.10. These issues are annoying to fix and are very time consuming when trying to troubleshoot.
 
 The solution to this issue is the use of a Python Version Manager in pair with a Virtual Environment manager. Over the few years I have spent using Python, I have found that [Pyenv](https://github.com/pyenv/pyenv) is one of the best python version managers out there. This is due mostly to its simple commands and ease of use. This tool alone does not come with a virtual environment manager, but it does support plugins. That is where the virtual environment manager, [Pyenv-Virtualenv](https://github.com/pyenv/pyenv-virtualenv) comes into play.
 
-In this blog I will show you how to set up Pyenv and Pyenv-Virtualenv in a BASH shell environment as well as a ZSH shell environment. BASH set-up aims for development environments that are using WSL2 or a base OS/VM such as Ubuntu. ZSH set-up aims for development environments that are using OSX or if there was a switch to ZSH.
+In this blog I will show you how to set up Pyenv and Pyenv-Virtualenv in a BASH shell environment as well as a ZSH shell environment. The BASH set-up aims for development environments that are using WSL2 or a base OS/VM such as Ubuntu. ZSH set-up aims for development environments that are using OSX or if there was a switch to ZSH.
 
 Once we get this tool installed and working, I will present some of the most common commands that you will most likely use when setting up a python development environment with Pyenv.
 
@@ -26,13 +26,13 @@ Once we get this tool installed and working, I will present some of the most com
 
 For linux environments the install command is as follows:
 
-```shell
+```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ```
 
 Optionally, an alternative install method for macOS is as follows:
 
-```shell
+```bash
 brew update
 brew install pyenv
 ```
@@ -43,7 +43,7 @@ brew install pyenv
 
 The source files we will update can be found in your specific user's home directory. Check your shell and for the shell source files using the following commands.
 
-```shell
+```bash
 # Check for Shell
 echo $SHELL
 
@@ -57,7 +57,7 @@ ls -la
 **.bashrc**
 For the first step, the following commands can be copy and pasted so that your `~/.bashrc` file can be updated accordingly.
 
-```shell
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
@@ -67,7 +67,7 @@ Next, depending on the linux distribution, the bash profile file might vary. Thi
 
 **.profile**
 
-```shell
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
 echo 'eval "$(pyenv init -)"' >> ~/.profile
@@ -75,7 +75,7 @@ echo 'eval "$(pyenv init -)"' >> ~/.profile
 
 **.bash_profile**
 
-```shell
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
@@ -89,7 +89,7 @@ Similar to BASH you will add the following commands to your `.zshrc` file.
 
 **.zshrc**
 
-```shell
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
@@ -99,13 +99,13 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 Now that we have properly installed Pyenv, we need to restart our shell so that our modified source files can initialize Pyenv. To do this, use the following command:
 
-```shell
+```bash
 exec "$SHELL"
 ```
 
 Lastly, to test that everything was installed properly, we will run the command that lists out all the possible Python versions that we can install. The command is as follows:
 
-```shell
+```bash
 pyenv install -l
 ```
 
@@ -117,13 +117,13 @@ If there was no error, then you have successfully installed Pyenv and can move o
 
 Once Pyenv is installed and working, the set-up for Pyenv-virtualenv is very trivial. This can be done with the following command:
 
-```shell
+```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 ```
 
 If you went the Brew route on macOS, then you can use the following command for installing the plugin and once done, continue with the next step.
 
-```shell
+```bash
 brew install pyenv-virtualenv
 ```
 
@@ -131,13 +131,13 @@ In addition, there is an optional feature of enabling auto-activation of your vi
 
 **For BASH**
 
-```shell
+```bash
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 ```
 
 **For ZSH**
 
-```shell
+```bash
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 ```
 
@@ -145,13 +145,13 @@ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 
 Now that we have properly installed Pyenv-Virtualenv, we need to restart our shell so that our modified source files can initialize the plugin. To do this, use the following command:
 
-```shell
+```bash
 exec "$SHELL"
 ```
 
 Lastly, for testing if this plugin was set-up properly, we will run the following command that lists all of our current virtual environments.
 
-```shell
+```bash
 pyenv virtualenvs
 ```
 
@@ -165,7 +165,7 @@ For sake of simplicity and getting straight to the point, I will just add all of
 
 ### PYENV
 
-```shell
+```bash
 # List Python Versions
 pyenv install -l
 
@@ -187,7 +187,7 @@ pyenv global [VERSION]
 
 ### PYENV-VIRTUALENV
 
-```shell
+```bash
 # Create Virtualenv
 pyenv virtualenv [VERSION] [NAME]
 
