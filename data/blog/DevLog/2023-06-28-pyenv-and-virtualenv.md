@@ -1,7 +1,7 @@
 ---
 title: Pyenv and Pyenv-Virtualenv
 date: '2023-06-28'
-tags: ['development', 'tool' 'terminal', 'python', 'bash', 'zsh', 'virtualenv', 'pyenv']
+tags: ['development', 'tool', 'terminal', 'python', 'bash', 'zsh', 'virtualenv', 'pyenv']
 draft: false
 summary: Installing and using a Python version manager coupled with a virtual environment manager.
 ---
